@@ -8,10 +8,10 @@ class CatNews::CLI
   end
 
   def list_stories
-    puts <<-DOC
-    Cat Lovers Feed Hundreds of Strays On Freezing Snowy Turkish Beach
-    So Many Adoptions Cat Cafe Runs Out of Cats
-    DOC
+    @stories = CatNews::Story.today
+    @stories.each.with_index(1) do |story, i|
+      puts "#{i}: #{story.name}"
+    end
   end
 
   def menu
@@ -20,13 +20,15 @@ class CatNews::CLI
       puts "Enter the number of the story you'd like to read:"
       input = gets.strip.downcase
 
-      case input
-      when "1"
-        puts "Here is story 1"
-      when "2"
-        puts "Here is story 2"
-      when "list"
+      if input.to_i > 0
+        the_story = @stories[input.to_i - 1]
+        puts "#{the_story.name}"
+      elsif input == "list"
         list_stories
+      elsif input =="exit"
+        goodbye
+      else
+        puts "Please type list or exit"
       end
     end
   end
