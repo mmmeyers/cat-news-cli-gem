@@ -1,13 +1,13 @@
 class CatNews::CLI
 
   def call
-    puts "Today's cat stories:"
     list_stories
     menu
     goodbye
   end
 
   def list_stories
+    puts "Today's cat stories:"
     @stories = CatNews::Story.today
     @stories.each.with_index(1) do |story, i|
       puts "#{i}: #{story.name}"
