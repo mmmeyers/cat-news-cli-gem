@@ -4,6 +4,7 @@ class CatNews::CLI
     puts "Today's cat stories:"
     list_stories
     menu
+    goodbye
   end
 
   def list_stories
@@ -14,15 +15,24 @@ class CatNews::CLI
   end
 
   def menu
-    puts "Enter the number of the story you'd like to read:"
-    input = gets.strip
+    input = nil
+    while input != "exit"
+      puts "Enter the number of the story you'd like to read:"
+      input = gets.strip.downcase
 
-    case input
-    when "1"
-      puts "Here is story 1"
-    when "2"
-      puts "Here is story 2"
+      case input
+      when "1"
+        puts "Here is story 1"
+      when "2"
+        puts "Here is story 2"
+      when "list"
+        list_stories
+      end
     end
+  end
+
+  def goodbye
+    puts "See you tomorrow for more cat stories!"
   end
 
 end
