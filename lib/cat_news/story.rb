@@ -16,10 +16,14 @@ class CatNews::Story
   end
 
   def self.scrape_first_story
+    mechanize = Mechanize.new
+    page = mechanize.get('http://www.pussingtonpost.com')
     doc = Nokogiri::HTML(open("http://pussingtonpost.com/"))
     story = self.new
     story.name = doc.search("h2 a")[0].text
-    story.content = doc.search("p")[1].text
+    read_more = page.link_with(:text => /Read More/)
+    read_more = read_more.click
+    story.content = read_more.search("div.entry p").text
     story
   end
 
