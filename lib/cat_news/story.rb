@@ -12,6 +12,7 @@ class CatNews::Story
 
     stories << self.scrape_first_story
     stories << self.scrape_second_story
+    stories << self.scrape_third_story
     stories
   end
 
@@ -21,18 +22,35 @@ class CatNews::Story
     doc = Nokogiri::HTML(open("http://pussingtonpost.com/"))
     story = self.new
     story.name = doc.search("h2 a")[0].text
-    read_more = page.link_with(:text => /Read More/)
+    read_more = page.links_with(:text => /Read More/)[0]
     read_more = read_more.click
     story.content = read_more.search("div.entry p").text
     story
   end
 
   def self.scrape_second_story
+    mechanize = Mechanize.new
+    page = mechanize.get('http://www.pussingtonpost.com')
     doc = Nokogiri::HTML(open("http://pussingtonpost.com/"))
     story = self.new
     story.name = doc.search("h2 a")[1].text
-    story.content = doc.search("p")[3].text
+    story_content = doc.search("div.entry p")[1].text
+    read_more = page.links_with(:text => /Read More/)[1]
+    read_more = read_more.click
+    story.content = read_more.search("div.entry p").text
     story
-  end  
+  end
+
+    def self.scrape_third_story
+    mechanize = Mechanize.new
+    page = mechanize.get('http://www.pussingtonpost.com')
+    doc = Nokogiri::HTML(open("http://pussingtonpost.com/"))
+    story = self.new
+    story.name = doc.search("h2 a")[2].text
+    read_more = page.links_with(:text => /Read More/)[2]
+    read_more = read_more.click
+    story.content = read_more.search("div.entry p").text
+    story
+  end 
 
 end

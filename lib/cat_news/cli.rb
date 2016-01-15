@@ -21,10 +21,13 @@ class CatNews::CLI
 
       if input.to_i == 1
         the_story = @stories[input.to_i - 1]
-        puts "#{the_story.name}\n #{the_story.content}"
+        puts "#{the_story.name}\n #{the_story.content}\n"
       elsif input.to_i == 2
         the_story = @stories[input.to_i - 1]
-        puts "#{the_story.name}\n #{the_story.content}"
+        puts "#{the_story.name}\n #{the_story.content}\n"
+      elsif input.to_i == 3
+        the_story = @stories[input.to_i - 1]
+        puts "#{the_story.name}\n #{the_story.content}\n"
       elsif input == "list"
         list_stories
       elsif input =="exit"
