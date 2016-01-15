@@ -1,6 +1,6 @@
 class CatNews::Story
 
-  attr_accessor :name
+  attr_accessor :name, :content
 
   def self.today
     # I should return a bunch of instances of Story.
@@ -19,6 +19,7 @@ class CatNews::Story
     doc = Nokogiri::HTML(open("http://pussingtonpost.com/"))
     story = self.new
     story.name = doc.search("h2 a")[0].text
+    story.content = doc.search("p")[1].text
     story
   end
 
@@ -26,6 +27,7 @@ class CatNews::Story
     doc = Nokogiri::HTML(open("http://pussingtonpost.com/"))
     story = self.new
     story.name = doc.search("h2 a")[1].text
+    story.content = doc.search("p")[3].text
     story
   end  
 

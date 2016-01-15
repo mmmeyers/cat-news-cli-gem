@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 require 'pry'
+require 'mechanize'
 
 require_relative "./cat_news/version"
 require_relative './cat_news/cli'

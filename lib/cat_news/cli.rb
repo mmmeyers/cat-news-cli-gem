@@ -19,9 +19,12 @@ class CatNews::CLI
       puts "Enter the number of the story you'd like to read:"
       input = gets.strip.downcase
 
-      if input.to_i > 0 && input.to_i < 3
+      if input.to_i == 1
         the_story = @stories[input.to_i - 1]
-        puts "#{the_story.name}"
+        puts "#{the_story.name}\n #{the_story.content}"
+      elsif input.to_i == 2
+        the_story = @stories[input.to_i - 1]
+        puts "#{the_story.name}\n #{the_story.content}"
       elsif input == "list"
         list_stories
       elsif input =="exit"
