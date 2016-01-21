@@ -16,18 +16,18 @@ class CatNews::CLI
   def menu
     input = nil
     while input != "exit"
-      puts "Enter the number of the story you'd like to read:"
+      puts "Enter the number of the story you'd like to read, or type list to see all stories:"
       input = gets.strip.downcase
 
       if input.to_i == 1
         the_story = @stories[input.to_i - 1]
-        puts "#{the_story.name}\n #{the_story.content}\n\n\n\n"
+        puts "#{the_story.name}\n #{the_story.content}\n\n\n"
       elsif input.to_i == 2
         the_story = @stories[input.to_i - 1]
-        puts "#{the_story.name}\n #{the_story.content}\n\n\n\n"
+        puts "#{the_story.name}\n #{the_story.content}\n\n\n"
       elsif input.to_i == 3
         the_story = @stories[input.to_i - 1]
-        puts "#{the_story.name}\n #{the_story.content}\n\n\n\n"
+        puts "#{the_story.name}\n #{the_story.content}\n\n\n"
       elsif input == "list"
         list_stories
       elsif input =="exit"
